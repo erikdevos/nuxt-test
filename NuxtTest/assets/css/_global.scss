@@ -1,0 +1,52 @@
+@use '~/assets/css/_variables.scss' as *;
+
+body {
+    margin: 0;
+    background-color: #f5f5f5;
+    font-family: $font-family;
+    height: 100%;
+    min-height: 100vh;
+    line-height: 1.5;
+    display: flex;
+}
+
+section {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+}
+
+a {
+    color: $color-primary;
+}
+
+h1, h2, h3, h4, h5 {
+    color: $color-primary;
+    margin-top: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 65rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    grid-column: 2;
+}
+
+.appframe {
+    width: 100%;
+}
+
+main {
+    min-height: 100vh;
+}
+
+nav {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    a {
+        &:hover {
+            color: $color-primary;
+        }
+    }
+}
