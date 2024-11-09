@@ -3,7 +3,6 @@
       <NuxtLink to="/">Home</NuxtLink>
       <NuxtLink to="/products">Products</NuxtLink>
       <NuxtLink to="/about">About</NuxtLink>
-      <NuxtLink to="/contact">Contact</NuxtLink>
     </nav>
   </template>
   
@@ -13,10 +12,14 @@
     padding: 10px;
     display: flex;
     gap: 15px;
+    a {
+      color: #fff;
+      text-decoration: none;
+      &:hover {
+        color: $color-primary;
+      }
+    }
   }
   
-  .nav-bar a {
-    color: #fff;
-    text-decoration: none;
-  }
+
   </style>

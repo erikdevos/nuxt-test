@@ -13,6 +13,8 @@
 
           <p>{{ product.description }}</p>
           <p>Price: ${{ product.price }}</p>
+
+          <a href="#" class="btn pos">Add to cart</a>
         </div>
 
         <img class="product-image" :src="product.image || 'https://picsum.photos/300'" alt="Product image" />
@@ -92,11 +94,16 @@ onMounted(() => {
   @include product-label;
 }
 
+.btn {
+  @include cta-button;
+}
+
 .product-image {
   object-fit: fill;
   max-width: 100%;
   max-height: 20rem;
   border-radius: $border-radius-image;
 }
+
 
 </style>
