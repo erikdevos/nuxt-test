@@ -2,6 +2,7 @@
 
 // Colors
 $color-primary: #236296;
+$color-primary-dark: darken($color-primary, 10%);
 $color-black: #000000;
 $color-white: #FFFFFF;
 
@@ -11,3 +12,4 @@ $font-family: Arial, sans-serif;
 // Border radius
 $border-radius-image: 10px;
 $border-radius-label: 3px;
+$border-radius-btn: 5px;

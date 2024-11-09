@@ -4,7 +4,7 @@
     </header>
   </template>
   
-  <style scoped>
+  <style scoped lang="scss">
   .header {
     background-color: #3490dc;
     color: #fff;

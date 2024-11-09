@@ -7,7 +7,7 @@
     </nav>
   </template>
   
-  <style scoped>
+  <style scoped lang="scss">
   .nav-bar {
     background-color: #333;
     padding: 10px;
