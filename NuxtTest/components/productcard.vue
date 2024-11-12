@@ -1,6 +1,6 @@
 <template>
     <div class="product-item">
-      <nuxt-link :to="`/product/${product.id}`">
+      <nuxt-link :to="`/product/${product.slug}-${product.id}`">
         <div class="product-image-wrapper">
           <img :src="product.image || 'https://picsum.photos/250'" alt="Product image" />
           <div class="product-category">{{ product.category }}</div>
