@@ -17,12 +17,13 @@ jobs:
         with:
           node-version: '16'
 
+      # Go to the correct project folder if it's in a subdirectory, else leave as default
       - name: Install dependencies
-        working-directory: ./nuxt-test  # Update with your subfolder name if needed
+        working-directory: ./nuxt-test # Use only if your project is in 'nuxt-test' subfolder
         run: npm install
 
       - name: Build and Generate Static Files
-        working-directory: ./nuxt-test  # Update with your subfolder name if needed
+        working-directory: ./nuxt-test # Same as above, adjust if needed
         env:
           NUXT_SSR: false
           NUXT_TARGET: static
@@ -32,4 +33,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./nuxt-test/dist  # Update path if your project is in a subdirectory
+          publish_dir: ./nuxt-test/dist # Set this based on the actual build output location
