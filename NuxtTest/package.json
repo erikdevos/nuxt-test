@@ -6,6 +6,8 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "start": "nuxt start",
+    "deploy": "nuxt generate && gh-pages -d dist",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
@@ -17,6 +19,7 @@
     "vue": "latest"
   },
   "devDependencies": {
+    "gh-pages": "^6.2.0",
     "sass": "^1.80.6",
     "sass-loader": "^16.0.3"
   }

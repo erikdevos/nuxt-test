@@ -1,5 +1,7 @@
 // nuxt.config.ts
 export default defineNuxtConfig({
+  ssr: process.env.NUXT_SSR === 'true',
+  target: process.env.NUXT_TARGET || 'server', // Use 'static' for static deployment
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   modules: ['@pinia/nuxt'],
