@@ -21,14 +21,7 @@
   })
   </script>
   
-  <style scoped lang="scss">
-  .product-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    margin-bottom: 4rem;
-  }
-  
+  <style scoped lang="scss">  
   .product-item {
     display: flex;
     flex-direction: column;
@@ -37,8 +30,11 @@
   
     h2 {
       margin: 0;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: inherit;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
   
     a {
@@ -57,7 +53,7 @@
   
     .product-image-wrapper {
       position: relative;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.3rem;
       border-radius: 10px;
       overflow: hidden;
   

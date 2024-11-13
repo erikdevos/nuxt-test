@@ -112,12 +112,6 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
 .product-wrapper {
   display: grid;
   grid-template-columns: 2fr 1fr;

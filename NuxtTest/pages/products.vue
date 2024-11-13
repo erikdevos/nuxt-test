@@ -58,9 +58,9 @@ const handlePageChange = (newPage) => {
 
 <style scoped lang="scss">
 .product-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  margin-bottom: 4rem;
-}
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
 </style>
