@@ -1,8 +1,9 @@
 <script setup>
-import { ref, onMounted, watchEffect } from 'vue'
+import { ref, onMounted, watchEffect, toRefs } from 'vue'
 import { useProductStore } from '~/store/products.ts'
 import ProductCard from '~/components/productcard.vue'
 import Pagination from '~/components/pagination.vue'
+import Loader from '~/components/Loader.vue'
 
 const productStore = useProductStore()
 const breadcrumbs = ref([
@@ -10,21 +11,33 @@ const breadcrumbs = ref([
   { name: 'Products', to: '/products' }
 ])
 
+// Loading state
+const loading = ref(true)
+
 // Fetch products on mount
 onMounted(async () => {
-  await productStore.fetchProducts()
-  console.log('Products after fetching:', productStore.products)  // Debugging
+  try {
+    await productStore.fetchProducts()
+    console.log('Products after fetching:', productStore.products) // Log products after fetch
+    loading.value = false // Set loading to false once the data is fetched
+  } catch (error) {
+    console.error('Error fetching products:', error) // Log any errors
+    loading.value = false // Set loading to false in case of error
+  }
 })
 
 // Watch for changes in products and log
 watchEffect(() => {
-  console.log('Product store:', productStore.products)  // Debugging
+  console.log('Product store:', productStore.products)  // Debugging products
 })
 
 // Pagination functions
 const handlePageChange = (newPage) => {
   productStore.fetchProducts(newPage)
 }
+
+// Unwrap products with toRefs
+const { products } = toRefs(productStore)
 </script>
 
 <template>
@@ -32,10 +45,15 @@ const handlePageChange = (newPage) => {
     <div class="container">
       <Breadcrumb :breadcrumbs="breadcrumbs" />
 
-      <div class="product-list" v-if="productStore.products && productStore.products.length">
-        <!-- Product overview item -->
+      <!-- Loading state -->
+      <div v-if="loading">
+        <Loader message="Loading whatever we want..." />
+      </div>
+
+      <!-- Product List when data is fetched -->
+      <div v-else-if="products && products.length" class="product-list">
         <ProductCard
-          v-for="product in productStore.products"
+          v-for="product in products"
           :key="product.id"
           :product="product"
         />
@@ -58,9 +76,9 @@ const handlePageChange = (newPage) => {
 
 <style scoped lang="scss">
 .product-list {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 2rem;
-    margin-bottom: 4rem;
-  }
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
 </style>
