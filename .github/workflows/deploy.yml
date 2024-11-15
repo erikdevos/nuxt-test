@@ -17,11 +17,12 @@ jobs:
         with:
           node-version: '16'
 
-      # Navigate to the 'NuxtTest' folder for all commands
+      # Install dependencies in the 'NuxtTest' directory
       - name: Install dependencies
         working-directory: ./NuxtTest
         run: npm install
 
+      # Build and generate static files
       - name: Build and Generate Static Files
         working-directory: ./NuxtTest
         env:
@@ -29,8 +30,9 @@ jobs:
           NUXT_TARGET: static
         run: npm run generate
 
+      # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./NuxtTest/dist # Update to where 'dist' is generated
+          publish_dir: ./NuxtTest/dist
