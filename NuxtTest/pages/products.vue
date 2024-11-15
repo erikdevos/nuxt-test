@@ -1,8 +1,8 @@
 <script setup>
 import { ref, onMounted, watchEffect } from 'vue'
 import { useProductStore } from '~/store/products.ts'
-import ProductCard from '~/components/ProductCard.vue'
-import Pagination from '~/components/Pagination.vue'
+import ProductCard from '~/components/productcard.vue'
+import Pagination from '~/components/pagination.vue'
 
 const productStore = useProductStore()
 const breadcrumbs = ref([
