@@ -1,9 +1,10 @@
 <script setup>
-import { ref, onMounted, watchEffect, toRefs } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useProductStore } from '~/store/products.ts'
 import ProductCard from '~/components/productcard.vue'
 import Pagination from '~/components/pagination.vue'
-import Loader from '~/components/Loader.vue'
+import Loader from '~/components/loader.vue'
+import ProductFiltering from '~/components/ProductFiltering.vue'
 
 const productStore = useProductStore()
 const breadcrumbs = ref([
@@ -11,33 +12,34 @@ const breadcrumbs = ref([
   { name: 'Products', to: '/products' }
 ])
 
-// Loading state
 const loading = ref(true)
+const categories = ref([]) // Define categories as a ref
 
-// Fetch products on mount
+// Fetch all products and categories on mount
 onMounted(async () => {
-  try {
-    await productStore.fetchProducts()
-    console.log('Products after fetching:', productStore.products) // Log products after fetch
-    loading.value = false // Set loading to false once the data is fetched
-  } catch (error) {
-    console.error('Error fetching products:', error) // Log any errors
-    loading.value = false // Set loading to false in case of error
-  }
-})
+  // Fetch all products and cache them
+  await productStore.fetchAllProducts()
 
-// Watch for changes in products and log
-watchEffect(() => {
-  console.log('Product store:', productStore.products)  // Debugging products
+  // Get categories from the full cached list of products
+  categories.value = productStore.allCategories || [] 
+
+  // Fetch the first page of products for the overview
+  await productStore.fetchProducts(1)
+
+  loading.value = false
+  console.log('Categories:', categories.value)  // Log categories for debugging
 })
 
 // Pagination functions
 const handlePageChange = (newPage) => {
-  productStore.fetchProducts(newPage)
+  productStore.fetchProducts(newPage)  // Load the products for the new page
 }
 
-// Unwrap products with toRefs
-const { products } = toRefs(productStore)
+// Filter products by selected category
+const filterByCategory = (category) => {
+  // Here you can filter products by category if needed, but for now, we load all products on category selection.
+  productStore.fetchProducts(1)  // Reset to page 1 on category change
+}
 </script>
 
 <template>
@@ -47,13 +49,19 @@ const { products } = toRefs(productStore)
 
       <!-- Loading state -->
       <div v-if="loading">
-        <Loader message="Loading whatever we want..." />
+        <Loader message="Loading products..." />
       </div>
 
-      <!-- Product List when data is fetched -->
-      <div v-else-if="products && products.length" class="product-list">
+      <!-- Product Filtering Component (pass categories as a prop) -->
+      <ProductFiltering 
+        :categories="productStore.allCategories" 
+        @category-select="filterByCategory" 
+      />
+
+      <div class="product-list" v-if="productStore.products && productStore.products.length">
+        <!-- Product overview item -->
         <ProductCard
-          v-for="product in products"
+          v-for="product in productStore.products"
           :key="product.id"
           :product="product"
         />
@@ -76,9 +84,9 @@ const { products } = toRefs(productStore)
 
 <style scoped lang="scss">
 .product-list {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
 }
 </style>

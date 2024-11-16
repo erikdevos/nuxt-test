@@ -30,12 +30,12 @@ defineProps({
 .loading-state::after {
   content: '';
   display: inline-block;
-  width: 30px;
-  height: 30px;
-  border: 4px solid #ccc;
-  border-top: 4px solid #3490dc;
+  width: 4rem;
+  height: 4rem;
+  border: 7px solid #ccc;
+  border-top: 7px solid #3490dc;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 0.6s linear infinite;
 }
 
 @keyframes spin {

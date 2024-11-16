@@ -2,41 +2,58 @@ import { defineStore } from 'pinia'
 
 export const useProductStore = defineStore('product', {
   state: () => ({
-    products: [],
+    products: [],  // Paginated list of products
+    allProducts: [],  // Cached full list of all products
     totalProducts: 0,
     pageSize: 8,
     currentPage: 1,
+    allCategories: [],  // Full list of categories extracted from allProducts
   }),
   actions: {
+    // Fetch all products (not paginated) and store them in `allProducts`
+    async fetchAllProducts() {
+      try {
+        const response = await fetch('https://dummyjson.com/products?limit=0&select=category,title') // fetch all products with selected fields
+        const data = await response.json()
+    
+        // Cache all the fetched products in the store
+        this.allProducts = data.products
+    
+        // Update categories based on all products
+        this.updateCategories(this.allProducts)
+    
+        // Log the results to ensure we're getting all the data
+        console.log('Fetched All Products:', this.allProducts.length)
+        console.log('Categories:', this.allCategories)
+      } catch (error) {
+        console.error('Error fetching all products:', error)
+      }
+    },    
+
+    // Fetch paginated products (used for product overview page)
     async fetchProducts(page = 1, limit = this.pageSize) {
       try {
         const response = await fetch(`https://dummyjson.com/products?skip=${(page - 1) * limit}&limit=${limit}`)
         const data = await response.json()
 
-        // Add slug field to each product
-        this.products = data.products.map(product => ({
-          ...product,
-          slug: this.generateSlug(product.title)
-        }))
+        this.products = data.products  // Store products for the current page
         this.totalProducts = data.total
         this.currentPage = page
 
-        // Debugging: log the fetched products to check slugs and IDs
-        console.log('Fetched Products:', this.products)
-
+        console.log('Fetched Products for Page:', this.products)
       } catch (error) {
-        console.error('Error fetching products:', error)
+        console.error('Error fetching products for page:', error)
       }
-
-      // Log the fetched products to check slugs and IDs
-      console.log('Fetched Products:', JSON.parse(JSON.stringify(this.products)))
     },
 
-    // Fetch product by ID (only)
-    getProductById(id) {
-      // Find the product by ID only
-      return this.products.find(product => product.id === id)
-    }, // <-- Missing comma added here
+    // Extract and update all categories (called only once)
+    updateCategories(products) {
+      const newCategories = products
+        .map(product => product.category)  // Extract categories from products
+        .filter((value, index, self) => self.indexOf(value) === index)  // Remove duplicates
+
+      this.allCategories = newCategories  // Update allCategories with unique categories
+    },
 
     // Generate a slug for product title
     generateSlug(title) {
