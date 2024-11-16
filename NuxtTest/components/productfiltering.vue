@@ -32,11 +32,14 @@
   
   <style scoped lang="scss">
   .product-filtering {
-    margin-bottom: 3rem;
     white-space: nowrap;
     width: 100%;
     max-width: calc(100vw - 2rem); // hacky temp fix
     overflow-x: auto;
+    margin-bottom: 1rem;
+    @media only screen and (min-width: 600px) {
+      margin-bottom: 3rem;  
+    }
     ul {
         list-style-type: none;
         padding: 0;

@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-  <nav aria-label="Breadcrumbs">
+  <nav class="breacrumbs-nav" aria-label="Breadcrumbs">
     <ul>
       <li v-for="(breadcrumb, index) in breadcrumbs" :key="index">
         <router-link :to="breadcrumb.to">{{ breadcrumb.name }}</router-link>
@@ -18,6 +18,8 @@ defineProps({
 </template>
 
   <style scoped>
+  .breacrumbs-nav {
+    margin-top: 1rem;
     ul {
       list-style: none;
       display: flex;
@@ -47,6 +49,6 @@ defineProps({
         text-decoration: none;
       }
     }
-  
+  }
   </style>
   

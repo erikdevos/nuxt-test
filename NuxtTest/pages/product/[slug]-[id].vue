@@ -113,9 +113,12 @@ onMounted(() => {
 <style scoped lang="scss">
 .product-wrapper {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr;
   gap: 3rem;
   margin-bottom: 3rem;
+  @media only screen and (min-width: 600px) {
+    grid-template-columns: 2fr 1fr;
+  }  
 }
 
 .product-label {
@@ -133,10 +136,16 @@ onMounted(() => {
 }
 
 .product-image {
-  object-fit: fill;
-  max-width: 100%;
+  object-fit: cover;
+  width: 100%;
   max-height: 20rem;
   border-radius: $border-radius-image;
+  order: -1;
+  @media only screen and (min-width: 600px) {
+    order: initial;
+    max-width: 100%;
+    object-fit: fill;
+  }
 }
 
 .cart-dialog {

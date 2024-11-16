@@ -41,7 +41,11 @@
   }
   
   input {
-    min-width: 20rem;
+    
+    width: auto;
+    @media only screen and (min-width: 600px) {
+        min-width: 20rem;
+    }
   }
   
   </style>

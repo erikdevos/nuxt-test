@@ -39,7 +39,7 @@ export const useProductStore = defineStore('product', {
     // Fetch paginated products (used for product overview page)
     async fetchProducts(page = 1, limit = this.pageSize) {
       try {
-        const response = await fetch(`https://dummyjson.com/products?skip=${(page - 1) * limit}&limit=${limit}`);
+        const response = await fetch(`https://dummyjson.com/products?skip=${(page - 1) * limit}&limit=${limit}&delay=1000`);
         const data = await response.json();
 
         // Assign slugs to each product
