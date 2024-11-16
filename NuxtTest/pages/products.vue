@@ -4,7 +4,7 @@ import { useProductStore } from '~/store/products.ts'
 import ProductCard from '~/components/productcard.vue'
 import Pagination from '~/components/pagination.vue'
 import Loader from '~/components/loader.vue'
-import ProductFiltering from '~/components/ProductFiltering.vue'
+import ProductFiltering from '~/components/productfiltering.vue'
 
 const productStore = useProductStore()
 const breadcrumbs = ref([
