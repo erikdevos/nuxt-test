@@ -5,6 +5,7 @@ import ProductCard from '~/components/productcard.vue'
 import Pagination from '~/components/pagination.vue'
 import Loader from '~/components/loader.vue'
 import ProductFiltering from '~/components/productfiltering.vue'
+import ProductSearchBar from '~/components/productsearchbar.vue'
 
 const productStore = useProductStore()
 const breadcrumbs = ref([
@@ -19,7 +20,7 @@ const categories = ref([]) // Define categories as a ref
 onMounted(async () => {
   // Fetch all products and cache them
   await productStore.fetchAllProducts();
-  
+
   // Get categories from the full cached list of products
   categories.value = productStore.allCategories || [] 
 
@@ -58,19 +59,20 @@ const filterByCategory = (category) => {
         @category-select="filterByCategory" 
       />
 
-      <div class="product-list" v-if="productStore.products && productStore.products.length">
-        <!-- Product overview item -->
-        <ProductCard
-          v-for="product in productStore.products"
-          :key="product.id"
-          :product="product"
-        />
-      </div>
+      <ProductSearchBar />
 
-      <!-- No products -->
-      <div v-else>
-        <p>No products found.</p>
-      </div>
+      <div class="product-list" v-if="productStore.filteredProducts && productStore.filteredProducts.length">
+      <ProductCard
+        v-for="product in productStore.filteredProducts"
+        :key="product.id"
+        :product="product"
+      />
+    </div>
+
+    <div v-else class="product-list-error">
+      <p>No products found.</p>
+    </div>
+
 
       <!-- Pagination Component -->
       <Pagination
@@ -92,5 +94,9 @@ const filterByCategory = (category) => {
       gap: 2rem;
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }    
+}
+
+.product-list-error {
+  margin-bottom: 3rem;
 }
 </style>
