@@ -33,30 +33,38 @@
   <style scoped lang="scss">
   .product-filtering {
     margin-bottom: 3rem;
-
+    white-space: nowrap;
+    width: 100%;
+    max-width: calc(100vw - 2rem); // hacky temp fix
+    overflow-x: auto;
     ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      gap: 0.8rem;
-      display: flex;
-      flex-wrap: wrap;
-  
-      li {
-        display: inline-flex;
-        outline: solid 1px $color-primary-dark;
-        color: $color-primary-dark;
-        cursor: pointer;
-        padding: 2px 8px;
-        transition: background-color 0.3s ease;
-        border-radius: $border-radius-label;
-        font-size: 0.85rem;
-  
-        &:hover {
-          background-color: $color-primary-dark;
-          color: white;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        gap: 0.8rem;
+        display: flex;
+
+        @media only screen and (min-width: 600px) {
+            flex-wrap: wrap;
+            overflow-x: visible;
+            
         }
-      }
+
+        li {
+            display: inline-flex;
+            border: solid 1px $color-primary-dark;
+            color: $color-primary-dark;
+            cursor: pointer;
+            padding: 2px 8px;
+            transition: background-color 0.3s ease;
+            border-radius: $border-radius-label;
+            font-size: 0.85rem;
+    
+            &:hover {
+            background-color: $color-primary-dark;
+            color: white;
+            }
+        }
     }
   }
   </style>

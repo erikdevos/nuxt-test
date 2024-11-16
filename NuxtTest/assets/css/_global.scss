@@ -1,6 +1,12 @@
 @use '~/assets/css/variables' as *;
 @use '~/assets/css/mixins' as *;
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     background-color: #f5f5f5;
@@ -37,11 +43,13 @@ ul {
 .container {
     width: 100%;
     max-width: 65rem;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-bottom: 2rem;
     padding-left: 1rem;
     padding-right: 1rem;
     grid-column: 2;
+    @media only screen and (min-width: 600px) {
+        padding-top: 3rem; 
+    }
 }
 
 .appframe {
@@ -52,10 +60,15 @@ main {
     min-height: 100vh;
 }
 
+// Breadcrumbs
 nav {
     display: flex;
     gap: 1rem;
     justify-content: center;
+    margin-bottom: 1rem;
+    ul {
+        margin-top: 0;
+    }
     a {
         &:hover {
             color: $color-primary;

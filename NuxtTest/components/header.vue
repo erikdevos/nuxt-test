@@ -39,7 +39,11 @@ const cartItemCount = computed(() => {
 
   h1 {
     color: white;
-    margin-bottom: 0
+    margin-bottom: 0;
+    font-size: 1.5rem;
+    @media only screen and (min-width: 600px) {
+      font-size: 2rem;
+    }
   }
 
   .header-cta {

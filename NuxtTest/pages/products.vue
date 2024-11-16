@@ -85,8 +85,12 @@ const filterByCategory = (category) => {
 <style scoped lang="scss">
 .product-list {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 2rem;
     margin-bottom: 4rem;
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    @media only screen and (min-width: 600px) {
+      gap: 2rem;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }    
 }
 </style>

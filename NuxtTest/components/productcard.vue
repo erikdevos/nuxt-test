@@ -2,7 +2,7 @@
     <div class="product-item">
       <nuxt-link :to="`/product/${product.slug}-${product.id}`">
         <div class="product-image-wrapper">
-          <img :src="product.image || 'https://picsum.photos/250'" alt="Product image" />
+          <img :src="product.image || 'https://picsum.photos/250'" alt="Product image"  loading="lazy"/>
           <div class="product-category">{{ product.category }}</div>
         </div>
         <h2 class="product-title">{{ product.title }}</h2>
@@ -68,8 +68,12 @@
       .product-category {
         @include product-label;
         position: absolute;
-        top: 1rem;
-        right: 1rem;
+        top: 0.5rem;
+        right: 0.5rem;
+        @media only screen and (min-width: 600px) {
+          top: 1rem;
+          right: 1rem;   
+        }
       }
     }
   }

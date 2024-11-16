@@ -24,7 +24,7 @@ defineProps({
       gap: 8px;
       padding: 0;
       display: flex;
-      margin-bottom: 3%;
+      margin-bottom: 1rem;
     }
 
     li {
