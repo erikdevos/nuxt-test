@@ -67,31 +67,30 @@ const breadcrumbs = ref([
   { name: 'Loading...', to: '#' } // Initial loading breadcrumb
 ])
 
-// Fetch product data
 const fetchProduct = async () => {
-  // Check if products are already in the store
-  if (productStore.products.length === 0) {
-    console.log('Fetching products...')
-    await productStore.fetchProducts() // Fetch all products if not already available
+  // Check if all products are already in the store
+  if (productStore.allProducts.length === 0) {
+    console.log('Fetching all products...');
+    await productStore.fetchAllProducts(); // Fetch all products to ensure `allProducts` is populated
   }
 
   // Debugging: Log before calling getProductById
-  console.log('Looking for product with ID:', productId)
+  console.log('Looking for product with ID:', productId);
 
-  // Get product by ID (ignore the slug)
-  product.value = productStore.getProductById(productId)
+  // Get product by ID (use `allProducts` to ensure access to the full list)
+  product.value = productStore.getProductById(productId);
 
   // Log the matched product to see if it's correctly matched
-  console.log('Matched Product:', product.value)
+  console.log('Matched Product:', product.value);
 
   // Update breadcrumbs after fetching the product
   if (product.value) {
     breadcrumbs.value[2] = {
-      name: product.value.title, 
-      to: `/product/${product.value.slug}-${product.value.id}`
-    }
+      name: product.value.title,
+      to: `/product/${product.value.slug}-${product.value.id}`,
+    };
   }
-}
+};
 
 // Add product to cart
 function addToCart(product) {

@@ -18,8 +18,8 @@ const categories = ref([]) // Define categories as a ref
 // Fetch all products and categories on mount
 onMounted(async () => {
   // Fetch all products and cache them
-  await productStore.fetchAllProducts()
-
+  await productStore.fetchAllProducts();
+  
   // Get categories from the full cached list of products
   categories.value = productStore.allCategories || [] 
 
