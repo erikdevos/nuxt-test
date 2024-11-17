@@ -52,6 +52,12 @@
         }
     }
 
+    &.disabled {
+        background-color: #ccc;
+        pointer-events: none;
+        cursor: not-allowed;
+    }
+
     &.icon {
         width: auto;
         padding: 0.5rem;
