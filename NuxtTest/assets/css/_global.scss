@@ -31,6 +31,13 @@ h1, h2, h3, h4, h5 {
     color: $color-primary;
     margin-top: 0;
 }
+  
+h1 {
+    font-size: 1.5rem;
+    @media only screen and (min-width: 600px) {
+        font-size: 2rem;  
+    }
+}
 
 ul {
     padding-left: 0;
@@ -47,9 +54,6 @@ ul {
     padding-left: 1rem;
     padding-right: 1rem;
     grid-column: 2;
-    @media only screen and (min-width: 600px) {
-        padding-top: 3rem; 
-    }
 }
 
 .appframe {

@@ -12,6 +12,10 @@
     section.hero {
         display: flex;
         position: relative;
+        margin-bottom: 1.5rem;
+        @media only screen and (min-width: 600px) {
+            margin-bottom: 3rem;
+        }
 
         .container {
             display: flex;
