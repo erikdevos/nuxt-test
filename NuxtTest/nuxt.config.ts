@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     rootAttrs: {
       class: 'appframe'
     },
-    baseURL: '/nuxt-test/', // Replace <repository-name> with your repo name
+    baseURL: '/meal-time-nuxt/', // Replace <repository-name> with your repo name
   },
   css: ['~/assets/css/style.scss'],  // This is your global stylesheet
   vite: {

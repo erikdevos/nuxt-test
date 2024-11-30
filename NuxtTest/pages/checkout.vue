@@ -56,7 +56,6 @@
 
 <script setup>
 import { ref } from 'vue';
-
 import { useCartStore } from '~/store/cart'
 
 const cartStore = useCartStore()
