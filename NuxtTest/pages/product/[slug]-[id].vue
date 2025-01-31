@@ -12,7 +12,7 @@
             {{ product.category }}
           </div>
 
-          <p>{{ product.description }}</p>
+          <div class="product-description content-area">{{ product.description }}</div>
           <div class="product-price">&euro;{{ product.price }}</div>
 
           <button @click="addToCart(product)" class="btn pos">Add to cart</button>
@@ -123,12 +123,18 @@ onMounted(() => {
 
 .product-label {
   @include product-label;
+  margin-bottom: 1rem;
+}
+
+.product-description {
+  margin-bottom: 1rem;
 }
 
 .product-price {
   font-weight: bold;
   color: $color-primary;
   margin-bottom: 2rem;
+  font-size: 1.5rem;
 }
 
 .btn {
@@ -154,7 +160,7 @@ onMounted(() => {
   right: 20px;
   border: none;
   padding: 1rem;
-  background-color: #333;
+  background-color: $color-darkgray;
   color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

@@ -14,7 +14,7 @@
     
           <!-- Email Field -->
           <div class="input-row">
-            <label for="email">Email:</label>
+            <label for="email">E-mail:</label>
               <input
                 type="email"
                 id="email"

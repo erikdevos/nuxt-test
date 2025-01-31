@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-      <p>&copy; 2024 Erik de Vos</p>
+      <p>&copy; 2024 - {{ new Date().getFullYear() }} | Erik de Vos</p>
     </footer>
   </template>
   

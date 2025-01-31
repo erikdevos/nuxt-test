@@ -4,7 +4,8 @@
       <input 
         v-model="searchQuery" 
         @input="handleSearch" 
-        placeholder="Zoek een product"
+        placeholder="Find products"
+        aria-label=""
       />
       <button @click="clearSearch" class="update-filtering">Clear</button>
     </div>
@@ -37,14 +38,24 @@
     margin-bottom: 3rem;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
+    justify-content: stretch;
+    @media only screen and (min-width: 600px) {
+      justify-content: flex-end;
+ 
+    }
+    button {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
   }
   
   input {
-    
+    flex: 1;
     width: auto;
     @media only screen and (min-width: 600px) {
-        min-width: 20rem;
+        min-width: 18rem;
+        flex: initial;
     }
   }
   

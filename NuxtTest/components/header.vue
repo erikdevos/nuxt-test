@@ -50,6 +50,8 @@ const cartItemCount = computed(() => {
     @include cta-button;
     margin-left: 1rem;
     font-size: 1rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
   }
 
   .cart-wrapper {
@@ -58,18 +60,22 @@ const cartItemCount = computed(() => {
     display: flex;
     align-items: center;
     text-decoration: none;
+    gap: 0.3rem;
 
     &:hover {
-      text-decoration: underline;
+      .cart-number {
+        background-color: $color-darkgray;
+        color: $color-white;
+      }
     }
 
     img {
-      width: 2rem;
+      width: 1.8rem;
       color: white;
     }
 
     .cart-number {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
     }
 
     span {
@@ -81,8 +87,8 @@ const cartItemCount = computed(() => {
       align-items: center;
       justify-content: center;
       flex-basis: auto;
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.25rem;
+      height: 1.25rem;
     }
   }
 }

@@ -23,6 +23,10 @@
     border: 1px solid #c1c1c1;
     border-radius: $border-radius-btn;
   }
+
+  textarea {
+    min-height: 10rem;
+  }
   
   button {
     @include cta-button;

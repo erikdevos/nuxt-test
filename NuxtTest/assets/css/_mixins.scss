@@ -8,17 +8,17 @@
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
     color: $color-white;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     border-radius: $border-radius-label;
   }
   
   @mixin cta-button {
     border: none;
     display: inline-flex;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.2rem;
-    padding-right: 1.2rem;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
     text-decoration: none;
     background-color: $color-primary;
     color: $color-white;

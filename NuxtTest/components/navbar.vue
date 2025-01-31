@@ -8,7 +8,7 @@
   
   <style scoped lang="scss">
   .nav-bar {
-    background-color: #333;
+    background-color: $color-darkgray;
     padding: 10px;
     display: flex;
     gap: 15px;

@@ -30,7 +30,7 @@
   
     h2 {
       margin: 0;
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: inherit;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -50,10 +50,18 @@
         }
       }
     }
+
+    .product-price {
+      font-size: 0.85rem;
+    }
+
+    .product-rating {
+      font-size: 0.85rem;
+    }
   
     .product-image-wrapper {
       position: relative;
-      margin-bottom: 1.3rem;
+      margin-bottom: 0.5rem;
       border-radius: 10px;
       overflow: hidden;
   
@@ -61,8 +69,8 @@
         display: block;
         width: 100%;
         object-fit: cover;
-        aspect-ratio: 5/4;
-        transition: 0.2s transform ease-in-out;
+        aspect-ratio: 5/3.5;
+        transition: 0.15s transform ease-in-out;
       }
   
       .product-category {
@@ -71,8 +79,8 @@
         top: 0.5rem;
         right: 0.5rem;
         @media only screen and (min-width: 600px) {
-          top: 1rem;
-          right: 1rem;   
+          top: 0.7rem;
+          right: 0.7rem;   
         }
       }
     }

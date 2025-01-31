@@ -41,12 +41,22 @@ defineProps({
         color: gray;
       }
 
+      &:last-of-type {
+        color: gray;
+        a {
+          color: inherit;
+        }
+      }
+
       span {
         color: gray;
       }
       a {
         color: #3490dc;
         text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
