@@ -29,8 +29,8 @@
   // Clear the search query and reset the filtering
   const clearSearch = () => {
     searchQuery.value = '';
-    productStore.filterProducts('');
-    productStore.selectedCategory = null;
+    productStore.filterProducts(''); // Reset Searchterm
+    productStore.selectedCategory = null; // Reset selected category
   };
   </script>
   

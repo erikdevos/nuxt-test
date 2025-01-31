@@ -1,12 +1,12 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useProductStore } from '~/store/products.ts';
 import ProductCard from '~/components/productcard.vue';
 import Pagination from '~/components/pagination.vue';
 import Loader from '~/components/loader.vue';
 import ProductFiltering from '~/components/productfiltering.vue';
 import ProductSearchBar from '~/components/productsearchbar.vue';
-import { computed } from 'vue';
+
 const productStore = useProductStore();
 const breadcrumbs = ref([
   { name: 'Home', to: '/' },
@@ -42,12 +42,10 @@ const handleSearch = (query) => {
 };
 
 const filteredProductsCount = computed(() => {
-  // Filter all products by the selected category and count the number of items
   return productStore.allProducts.filter(product => 
     product.category === productStore.selectedCategory
   ).length;
 });
-
 </script>
 
 <template>
@@ -64,12 +62,13 @@ const filteredProductsCount = computed(() => {
       <ProductFiltering 
         :categories="productStore.allCategories" 
         @category-select="filterByCategory" 
+        :formatCategoryName="productStore.formatCategoryName"
       />
 
       <!-- Product Search Bar -->
       <ProductSearchBar @search="handleSearch" />
 
-      <h2 v-if="productStore.selectedCategory">Currently showing <em>{{ productStore.selectedCategory }} ({{ filteredProductsCount }})</em></h2>
+      <h2 v-if="productStore.selectedCategory">Currently showing <em>{{ productStore.formatCategoryName(productStore.selectedCategory) }} ({{ filteredProductsCount }})</em></h2>
 
       <div class="product-list" v-if="productStore.filteredProducts && productStore.filteredProducts.length">
         <ProductCard
@@ -109,5 +108,4 @@ const filteredProductsCount = computed(() => {
 .product-list-error {
   margin-bottom: 3rem;
 }
-
 </style>

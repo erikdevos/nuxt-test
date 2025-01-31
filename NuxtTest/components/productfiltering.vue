@@ -8,20 +8,30 @@
         @click="selectCategory(category)"
         :class="{ active: selectedCategory === category }"
       >
-        {{ category }}
+        {{ formatCategoryName(category) }}
       </li>
     </ul>
   </div>
 </template>
 
 <script setup>
+// Import the product store
+import { useProductStore } from '@/store/products'
+
 // Define the 'categories' prop that will be passed from the parent component
 defineProps({
   categories: {
     type: Array,
     required: true
+  },
+  formatCategoryName: {
+    type: Function,
+    required: true
   }
 })
+
+// Access the store instance
+const productStore = useProductStore()
 
 // Emit category when clicked
 const emit = defineEmits(['category-select'])

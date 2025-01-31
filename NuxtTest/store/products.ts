@@ -74,6 +74,10 @@ export const useProductStore = defineStore('product', {
     generateSlug(title) {
       return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
     },
+
+    formatCategoryName(category) {
+      return category.replace(/[-]+/g, ' ').trim();    
+    },
   },
   getters: {
     totalPages() {
