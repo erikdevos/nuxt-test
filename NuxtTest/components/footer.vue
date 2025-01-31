@@ -14,6 +14,7 @@
     min-height: 15rem;
     justify-content: center;
     align-items: flex-end;
+    margin-top: 3rem;
   }
   </style>
   

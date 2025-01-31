@@ -79,3 +79,43 @@ nav {
         }
     }
 }
+
+// Custom flex grid
+.grid {
+    display: flex;
+    > * {
+        flex-basis: auto;
+        flex-shrink: 0;
+    }
+
+    &.mobile-row {
+        flex-direction: column;
+        @media only screen and (min-width: 768px) {
+            flex-direction: row;
+        }
+    }
+
+    &.gap-1 {
+        gap: 1rem;
+    }
+
+    &.gap-2 {
+        gap: 2rem;
+    }
+
+    &.gap-3 {
+        gap: 3rem;
+    }
+
+    .col-1 {
+        flex-grow: 1;
+    }
+
+    .col-2 {
+        flex-grow: 2;
+    }
+
+    .col-3 {
+        flex-grow: 3;
+    }
+}

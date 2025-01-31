@@ -1,13 +1,17 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-form {
-    display: flex;
-    flex-direction: column;
+  form {
+    .button-row {
+      display: flex;
+      justify-content: flex-end;
+    }
+    button[type=submit] {
+      align-self: flex-end;
+    }
   }
   
   label {
-    margin-top: 10px;
     font-weight: bold;
   }
   
@@ -26,4 +30,27 @@ form {
   
   button:hover {
     background-color: #2779bd;
+  }
+
+  .input-row {
+    display: flex;
+    margin-bottom: 1rem;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.3rem;
+    @media only screen and (min-width: 600px) {
+      gap: 1rem;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 2rem;
+
+    }
+    label {
+      flex: 1;
+    }
+    input,
+    textarea,
+    select {
+      flex: 3;
+    }
   }
