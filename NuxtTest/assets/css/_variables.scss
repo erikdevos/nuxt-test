@@ -1,11 +1,10 @@
+@use "sass:color";
 // Global variables
 
 // Colors
 $color-primary: #236296;
-$color-primary-dark: darken($color-primary, 10%);
-$color-positive: green;
-$color-positive-dark: darken($color-positive, 10%);
-$color-black: #000000;
+$color-primary-dark: color.mix(black, $color-primary, 10%);$color-positive: green;
+$color-positive-dark: color.mix(black, $color-positive, 10%);$color-black: #000000;
 $color-white: #FFFFFF;
 
 $color-darkgray: #333333;

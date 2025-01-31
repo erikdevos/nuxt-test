@@ -1,4 +1,3 @@
-// nuxt.config.ts
 export default defineNuxtConfig({
   ssr: process.env.NUXT_SSR === 'true',
   target: process.env.NUXT_TARGET || 'server', // Use 'static' for static deployment
@@ -20,6 +19,7 @@ export default defineNuxtConfig({
           additionalData: `
             @use '~/assets/css/_variables.scss' as *;
             @use '~/assets/css/_mixins.scss' as *;
+            @use 'sass:color' as color;  // Updated to ensure proper namespace
           `
         }
       }

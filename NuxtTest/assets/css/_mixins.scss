@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'sass:color' as color;
 
 @mixin product-label {
     display: inline-block;
@@ -40,15 +41,16 @@
     &.neg {
         background-color: darkred;
         &:hover {
-            background-color: darken(darkred, 10%);
+            background-color: color.mix(black, darkred, 10%);        
         }
+
     }
 
     &.neutral {
         background: gray;
         color: white;
         &:hover {
-            background-color: darken(gray, 10%);
+            background-color: color.mix(black, gray, 10%);        
         }
     }
 

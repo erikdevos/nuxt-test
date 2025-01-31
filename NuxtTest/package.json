@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "gh-pages": "^6.2.0",
-    "sass": "^1.80.6",
+    "sass": "^1.83.4",
     "sass-loader": "^16.0.3"
   }
 }
