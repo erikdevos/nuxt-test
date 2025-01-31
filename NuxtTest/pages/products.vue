@@ -6,7 +6,7 @@ import Pagination from '~/components/pagination.vue';
 import Loader from '~/components/loader.vue';
 import ProductFiltering from '~/components/productfiltering.vue';
 import ProductSearchBar from '~/components/productsearchbar.vue';
-
+import { computed } from 'vue';
 const productStore = useProductStore();
 const breadcrumbs = ref([
   { name: 'Home', to: '/' },
@@ -40,6 +40,14 @@ const filterByCategory = (category) => {
 const handleSearch = (query) => {
   productStore.filterProducts(query);
 };
+
+const filteredProductsCount = computed(() => {
+  // Filter all products by the selected category and count the number of items
+  return productStore.allProducts.filter(product => 
+    product.category === productStore.selectedCategory
+  ).length;
+});
+
 </script>
 
 <template>
@@ -61,6 +69,8 @@ const handleSearch = (query) => {
       <!-- Product Search Bar -->
       <ProductSearchBar @search="handleSearch" />
 
+      <h2 v-if="productStore.selectedCategory">Currently showing <em>{{ productStore.selectedCategory }} ({{ filteredProductsCount }})</em></h2>
+
       <div class="product-list" v-if="productStore.filteredProducts && productStore.filteredProducts.length">
         <ProductCard
           v-for="product in productStore.filteredProducts"
@@ -70,7 +80,7 @@ const handleSearch = (query) => {
       </div>
 
       <div v-else class="product-list-error">
-        <p>No products found.</p>
+        <p>No products found for current selection.</p>
       </div>
 
       <!-- Pagination Component - only show if not searching -->
@@ -99,4 +109,5 @@ const handleSearch = (query) => {
 .product-list-error {
   margin-bottom: 3rem;
 }
+
 </style>

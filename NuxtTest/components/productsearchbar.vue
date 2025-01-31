@@ -30,6 +30,7 @@
   const clearSearch = () => {
     searchQuery.value = '';
     productStore.filterProducts('');
+    productStore.selectedCategory = null;
   };
   </script>
   
@@ -40,10 +41,11 @@
     align-items: center;
     gap: 0.5rem;
     justify-content: stretch;
+    
     @media only screen and (min-width: 600px) {
       justify-content: flex-end;
- 
     }
+
     button {
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;

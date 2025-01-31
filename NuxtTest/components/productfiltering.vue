@@ -41,6 +41,7 @@ const selectCategory = (category) => {
   width: 100%;
   max-width: calc(100vw - 2rem); // hacky temp fix
   overflow-x: auto;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   @media only screen and (min-width: 600px) {
     margin-bottom: 3rem;  
@@ -49,13 +50,17 @@ const selectCategory = (category) => {
   ul {
     list-style-type: none;
     padding: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     margin: 0;
     gap: 0.8rem;
+    row-gap: 0.5rem;
     display: flex;
 
     @media only screen and (min-width: 600px) {
       flex-wrap: wrap;
       overflow-x: visible;
+      padding: 0;
     }
 
     li {
