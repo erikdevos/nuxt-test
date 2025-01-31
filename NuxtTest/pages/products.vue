@@ -1,46 +1,45 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import { useProductStore } from '~/store/products.ts'
-import ProductCard from '~/components/productcard.vue'
-import Pagination from '~/components/pagination.vue'
-import Loader from '~/components/loader.vue'
-import ProductFiltering from '~/components/productfiltering.vue'
-import ProductSearchBar from '~/components/productsearchbar.vue'
+import { ref, onMounted } from 'vue';
+import { useProductStore } from '~/store/products.ts';
+import ProductCard from '~/components/productcard.vue';
+import Pagination from '~/components/pagination.vue';
+import Loader from '~/components/loader.vue';
+import ProductFiltering from '~/components/productfiltering.vue';
+import ProductSearchBar from '~/components/productsearchbar.vue';
 
-const productStore = useProductStore()
+const productStore = useProductStore();
 const breadcrumbs = ref([
   { name: 'Home', to: '/' },
-  { name: 'Products', to: '/products' }
-])
+  { name: 'Products', to: '/products' },
+]);
 
-const loading = ref(true)
-const categories = ref([]) // Define categories as a ref
+const loading = ref(true);
+const categories = ref([]); // Define categories as a ref
 
 // Fetch all products and categories on mount
 onMounted(async () => {
-  // Fetch all products and cache them
   await productStore.fetchAllProducts();
-
-  // Get categories from the full cached list of products
-  categories.value = productStore.allCategories || [] 
-
-  // Fetch the first page of products for the overview
-  await productStore.fetchProducts(1)
-
-  loading.value = false
-  console.log('Categories:', categories.value)  // Log categories for debugging
-})
+  categories.value = productStore.allCategories || [];
+  await productStore.fetchProducts(1);
+  loading.value = false;
+});
 
 // Pagination functions
 const handlePageChange = (newPage) => {
-  productStore.fetchProducts(newPage)  // Load the products for the new page
-}
+  if (!productStore.searchQuery && !productStore.selectedCategory) {
+    productStore.fetchProducts(newPage); // Only handle pagination when not searching or filtering by category
+  }
+};
 
 // Filter products by selected category
 const filterByCategory = (category) => {
-  // Here you can filter products by category if needed, but for now, we load all products on category selection.
-  productStore.fetchProducts(1)  // Reset to page 1 on category change
-}
+  productStore.filterByCategory(category);
+};
+
+// Filter products based on search query
+const handleSearch = (query) => {
+  productStore.filterProducts(query);
+};
 </script>
 
 <template>
@@ -59,23 +58,24 @@ const filterByCategory = (category) => {
         @category-select="filterByCategory" 
       />
 
-      <ProductSearchBar />
+      <!-- Product Search Bar -->
+      <ProductSearchBar @search="handleSearch" />
 
       <div class="product-list" v-if="productStore.filteredProducts && productStore.filteredProducts.length">
-      <ProductCard
-        v-for="product in productStore.filteredProducts"
-        :key="product.id"
-        :product="product"
-      />
-    </div>
+        <ProductCard
+          v-for="product in productStore.filteredProducts"
+          :key="product.id"
+          :product="product"
+        />
+      </div>
 
-    <div v-else class="product-list-error">
-      <p>No products found.</p>
-    </div>
+      <div v-else class="product-list-error">
+        <p>No products found.</p>
+      </div>
 
-
-      <!-- Pagination Component -->
+      <!-- Pagination Component - only show if not searching -->
       <Pagination
+        v-if="!productStore.searchQuery && !productStore.selectedCategory"
         :currentPage="productStore.currentPage"
         :totalPages="productStore.totalPages"
         @page-change="handlePageChange"
