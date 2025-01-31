@@ -1,9 +1,11 @@
 <template>
-    <div class="page-content about-page">
-      <h1>About Us</h1>
-      <p>Welcome to the About page! Here’s some information about our app.</p>
-      <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. </p>
-    </div>
+    <section class="page-content about-page no-hero">
+      <div class="container">
+        <h1>About Us</h1>
+        <p>Welcome to the About page! Here’s some information about our app.</p>
+        <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. </p>
+      </div>
+    </section>
   </template>
   
   <script setup>
@@ -13,7 +15,6 @@
   <style scoped lang="scss">
   /* Scoped styles to make the page look nice */
   .about-page {
-    padding: 20px;
     text-align: center;
   }
   
